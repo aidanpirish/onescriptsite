@@ -1,19 +1,21 @@
 
+cd /var/www
+ls
 
-# create folder with html files
-mkdir var
-mkdir var/www
-mkdir var/www/html
-mkdir var/www/html/A
+# create folders
 
-touch var/www/html/index.html
-touch var/www/html/A/A.html
+mkdir html
+mkdir html/A
 
-# write html as two strings that will be passed to the files
+# create html files
+touch html/index.html
+touch html/A/A.html
+
+# write html as strings that will be written to the files
 export indexPage='<html>
   <head>
     <title>homepage</title>
-  <head>
+  </head>
   <body>
     <h1>Welcome to the OneScriptSite</h1>
     <h3>This site was created with a single bash script</h3>
@@ -25,12 +27,21 @@ export indexPage='<html>
 export aPage="<html>
   <head>
     <title>link page</title>
-  <head>
+  </head>
   <body>
     <h3>You are here because you clicked on the button</h3>
+    <br>
+    <a href="../index.html">GO BACK</a>
   </body>
 </html>
 "
 
-echo $indexPage > var/www/html/index.html
-echo $aPage > var/www/html/A/A.html
+#write to html files
+echo $indexPage > html/index.html
+echo $aPage > html/A/A.html
+
+# log when script is run
+echo "script run on: " `date '+%m/%d/%Y_%H:%M:%S'` >> log.txt
+
+# # open in browser
+# open html/index.html
