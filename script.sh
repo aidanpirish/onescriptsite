@@ -1,9 +1,7 @@
 
 cd /var/www
-ls
 
 # create folders
-
 mkdir html
 mkdir html/A
 
@@ -15,13 +13,44 @@ touch html/A/A.html
 export indexPage='<html>
   <head>
     <title>homepage</title>
+    <link href="https://fonts.googleapis.com/css?family=Ewert" rel="stylesheet">
+    <style>
+      body{ font-family: 'Ewert', cursive;}
+    </style>
+
   </head>
   <body>
     <h1>Welcome to the OneScriptSite</h1>
     <h3>This site was created with a single bash script</h3>
     <br>
     <a href="./A/A.html">NEXT PAGE</a>
+    <br><br>
+    <button onclick="getLocation()">Where am I?</button>
+    <p id="demo"></p>
+    <meter value="2" min="0" max="10" id="meter"></meter><br>
+    <button onclick="addToMeter()">CLICK HERE TO ADD TO METER</button>
   </body>
+  <script>
+    var x = document.getElementById("demo");
+    var meter = document.getElementById("meter");
+
+    function addToMeter() {
+      meter.value += 1;
+    }
+
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else { 
+            x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+    }
+
+    function showPosition(position) {
+        x.innerHTML = "Latitude: " + position.coords.latitude + 
+        "<br>Longitude: " + position.coords.longitude;
+    }
+  </script>
 </html>
 '
 export aPage="<html>
